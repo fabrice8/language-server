@@ -1,0 +1,44 @@
+{
+  "private": true,
+  "name": "marko-monaco",
+  "version": "0.13.0",
+  "main": "./lib/index.js",
+  "dependencies": {
+    "@codingame/monaco-jsonrpc": "^0.3.1",
+    "@codingame/monaco-languageclient": "^0.17.3",
+    "express": "^4.17.2",
+    "file-loader": "^4.3.0",
+    "monaco-editor": "^0.32.1",
+    "monaco-editor-textmate": "^3.0.0",
+    "monaco-editor-webpack-plugin": "^7.0.1",
+    "monaco-textmate": "^3.0.1",
+    "normalize-url": "^2.0.1",
+    "onigasm": "^2.2.5",
+    "path-browserify": "^1.0.1",
+    "reconnecting-websocket": "^3.2.2",
+    "url": "^0.11.0",
+    "webpack": "^5.50.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/normalize-url": "^1.9.1",
+    "css-loader": "^0.28.11",
+    "source-map-loader": "^0.2.3",
+    "style-loader": "^0.20.3",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "^3.11.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-merge": "^4.1.2",
+    "worker-loader": "^3.0.8"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "compile": "tsc",
+    "watch": "tsc -w",
+    "clean": "rimraf build",
+    "copy": "cp src/index.html lib/index.html",
+    "build": "yarn run compile && webpack --stats-children && yarn run copy",
+    "start": "node lib/server.js --resolveJsonModule",
+    "start:ext": "node lib/server.js --external"
+  }
+}

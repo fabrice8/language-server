@@ -19,15 +19,18 @@
   },
   "private": true,
   "scripts": {
-    "build": "tsc -b ./server ./clients/vscode",
+    "build:vscode": "tsc -b ./server ./clients/vscode",
+    "build:monaco": "tsc -b ./server-ws ./clients/monaco",
+    "build:all": "tsc -b ./server ./server-ws ./clients/vscode ./clients/monaco",
     "format": "prettier \"**/*.{ts,js,json,md}\" --write",
-    "lint": "tsc -p ./server --noEmit && tsc -p ./clients/vscode --noEmit && tslint -t codeFrame -c tslint.json '{server,clients/*}/src/**/*.ts'",
+    "lint": "tsc -p ./server --noEmit && tsc -p ./server-ws --noEmit && tsc -p ./clients/vscode --noEmit tsc -p ./clients/monaco --noEmit && tslint -t codeFrame -c tslint.json '{server,server-ws,clients/*}/src/**/*.ts'",
     "postpublish": "mkdir -p dist; export OUT=$PWD/dist/marko.vsix; (cd ./clients/vscode && npm i && vsce package -o $OUT && vsce publish --packagePath $OUT && ovsx publish $OUT -p $OVSX_PAT)",
     "publish": "yarn build && lerna publish",
     "watch": "yarn build -w"
   },
   "workspaces": [
     "server",
+    "server-ws",
     "clients/*"
   ]
 }

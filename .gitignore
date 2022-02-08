@@ -8,6 +8,9 @@
 # NPM
 node_modules
 
+# Client Build
+lib
+
 # Build
 dist
 
